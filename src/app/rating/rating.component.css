@@ -27,6 +27,9 @@ Adds the star symbol to the labels
 .rating:not(:checked) > label:before {
     content: '★ ';
 }
+.rating > input:disabled ~ label {
+    cursor: default;
+}
 /***************************
 Colour for the applied rating stars
 ***************************/
@@ -36,15 +39,15 @@ Colour for the applied rating stars
 /***************************
 Colour for hovered stars when increasing the rating
 ***************************/
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
+.rating > input:not(:checked):not(:disabled) ~ label:hover,
+.rating > input:not(:checked):not(:disabled) ~ label:hover ~ label {
     color: gold;
 }
 /***************************
 Colour for hovered stars when decreasing the rating
 ***************************/
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
+.rating > input:checked:not(:disabled) ~ label:hover,
+.rating > input:checked:not(:disabled) ~ label:hover ~ label,
+.rating > label:hover ~ input:checked:not(:disabled) ~ label {
     color: #ea0;
 }

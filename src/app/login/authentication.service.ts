@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Response } from '@angular/http';
+
+import { HttpService } from '../services';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService extends HttpService {
 
-    constructor(private http: Http) { }
     login(username: string, password: string) {
         return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
             .map((response: Response) => {

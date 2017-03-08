@@ -4,6 +4,7 @@
           [(ngModel)]="rating"
           [value]="r.value"
           [name]="inputName"
+          [disabled]="readonly"
           [checked]="r.value === rating"
           id="{{inputName + '_'+ r.value}}" />
       <label title="{{r.title}}" for="{{inputName + '_'+ r.value}}">{{r.value}}</label>

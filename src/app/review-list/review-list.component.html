@@ -1,0 +1,11 @@
+
+<ul>
+  <li *ngFor="let review of reviews">
+    <a [routerLink]="['/reviews', review.id]">{{review}}</a>
+  </li>
+
+  <li *ngIf="currentUser.role === UserRole.User "> <a [routerLink]="['add']" >+ Add review</a></li>
+</ul>
+<p *ngIf="currentUser.role === UserRole.Admin && reviews.length == 0">
+  There are not reviews yet.
+</p>

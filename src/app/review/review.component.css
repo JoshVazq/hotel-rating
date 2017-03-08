@@ -1,0 +1,11 @@
+app-rating {
+  display: inline-block;
+  vertical-align: middle;
+}
+.label {
+  float: right;
+}
+textarea {
+  height: 200px;
+  resize: none;
+}

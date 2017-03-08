@@ -1,9 +1,20 @@
 <!-- main app container -->
+<div id="wrapper">
 
-<div class="jumbotron">
+        <!-- Sidebar -->
+        <router-outlet name="navbar"></router-outlet>
+        <!-- /#sidebar-wrapper -->
 
-      <router-outlet name="navbar"></router-outlet>
-      <router-outlet></router-outlet>
-
-    <alert></alert>
-</div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <alert></alert>
+    </div>

@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 //TODO switch for Service Worker or refractor
-import { fakeBackendProvider } from './login/fake-backend';
+import { FakeBackendProvider } from './providers';
 
 import {
     AppComponent,
@@ -15,21 +15,32 @@ import {
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    NavbarComponent
+    NavbarComponent,
+    InfoComponent,
+    HotelListComponent,
+    ReviewListComponent,
+    ReviewAddComponent,
+    ReviewViewComponent,
+    HotelComponent,
+    RatingComponent
 } from './components';
 
 import { EmailValidatorDirective, PasswordValidatorDirective } from './directives';
 
 import {
     UserService,
+    HotelService,
+    ReviewService,
     AuthenticationService,
     AlertService
 } from './services';
 
+import { HotelsResolver, ReviewResolver, ReviewsResolver } from './resolvers';
+
+
 import { AuthenticationGuard } from './guards';
 
 import { AppRouting } from './app.routing';
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,6 +49,13 @@ import { AppRouting } from './app.routing';
         LoginComponent,
         RegisterComponent,
         NavbarComponent,
+        InfoComponent,
+        HotelListComponent,
+        HotelComponent,
+        ReviewListComponent,
+        ReviewAddComponent,
+        ReviewViewComponent,
+        RatingComponent,
 
         EmailValidatorDirective,
         PasswordValidatorDirective
@@ -50,11 +68,17 @@ import { AppRouting } from './app.routing';
     ],
     providers: [
       UserService,
+      HotelService,
+      ReviewService,
       AuthenticationService,
       AlertService,
       AuthenticationGuard,
 
-      fakeBackendProvider,
+      HotelsResolver,
+      ReviewResolver,
+      ReviewsResolver,
+
+      FakeBackendProvider,
       MockBackend,
       BaseRequestOptions
     ],

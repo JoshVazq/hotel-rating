@@ -1,17 +1,21 @@
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
+import { Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { MockConnection } from '@angular/http/testing';
+import { UserRole } from '../models';
+
+export function userSubscription(backend) {
     // array in local storage for registered users
-    let users: any[] = JSON.parse(localStorage.getItem('users')) || [{
-        id: 0,
-        firstName: 'Josh',
-        lastName: 'Vazquez',
-        username: 'admin@test.com',
-        password: 'password1'
-    }];
+    let users: any[];
 
     // configure fake backend
     backend.connections.subscribe((connection: MockConnection) => {
+        users = JSON.parse(localStorage.getItem('users')) || [{
+            id: 0,
+            role: UserRole.Admin,
+            firstName: 'Josh',
+            lastName: 'Vazquez',
+            username: 'admin@test.com',
+            password: 'password1'
+        }];
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -32,6 +36,7 @@ export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
                         status: 200,
                         body: {
                             id: user.id,
+                            role: user.role,
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
@@ -86,6 +91,7 @@ export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
 
                 // save new user
                 newUser.id = users.length + 1;
+                newUser.role = UserRole.User;
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
 
@@ -93,18 +99,20 @@ export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
                 connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
             }
 
-            // delete user
-            if (connection.request.url.match(/\/api\/users\/\d+$/) && connection.request.method === RequestMethod.Delete) {
+            // update user
+            if (connection.request.url.match(/\/api\/users\/\d+$/) && connection.request.method === RequestMethod.Put) {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
                 if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                    let updatedUser = JSON.parse(connection.request.getBody());
+
                     // find user by id in users array
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     for (let i = 0; i < users.length; i++) {
                         let user = users[i];
                         if (user.id === id) {
-                            // delete user
-                            users.splice(i, 1);
+                            // update user
+                            users[i] = updatedUser;
                             localStorage.setItem('users', JSON.stringify(users));
                             break;
                         }
@@ -121,12 +129,4 @@ export function httpFactory(backend: MockBackend, options: BaseRequestOptions) {
         }, 500);
 
     });
-
-    return new Http(backend, options);
 }
-export let fakeBackendProvider = {
-    // use fake backend in place of Http service for backend-less development
-    provide: Http,
-    useFactory: httpFactory,
-    deps: [MockBackend, BaseRequestOptions]
-};

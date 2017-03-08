@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+app-navbar + #page-content-wrapper {
+    padding-left: 50px;
+}
+
+
+@media(min-width:768px) {
+  app-navbar + #page-content-wrapper{
+      padding-left: 150px;
+  }
+}
