@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
    npm install
   ```
 
-  2. Install Angular CLI
+3. Install Angular CLI
     ```
      npm install -g @angular/cli
     ```
