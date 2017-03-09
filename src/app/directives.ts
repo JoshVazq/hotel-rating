@@ -1,2 +1,2 @@
-export { EmailValidatorDirective } from './register/email-validator.directive';
-export { PasswordValidatorDirective } from './register/password-validator.directive';
+export { EmailValidatorDirective } from './directives/email-validator.directive';
+export { PasswordValidatorDirective } from './directives/password-validator.directive';

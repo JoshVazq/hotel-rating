@@ -11,17 +11,15 @@ import { FakeBackendProvider } from './providers';
 
 import {
     AppComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     AlertComponent,
     NavbarComponent,
     InfoComponent,
-    HotelListComponent,
+    EditInfoComponent,
     ReviewListComponent,
     ReviewAddComponent,
     ReviewViewComponent,
-    HotelComponent,
     RatingComponent
 } from './components';
 
@@ -45,13 +43,12 @@ import { AppRouting } from './app.routing';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent,
         LoginComponent,
         RegisterComponent,
         NavbarComponent,
         InfoComponent,
-        HotelListComponent,
-        HotelComponent,
+        EditInfoComponent,
+
         ReviewListComponent,
         ReviewAddComponent,
         ReviewViewComponent,

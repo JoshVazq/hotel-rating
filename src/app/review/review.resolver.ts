@@ -14,7 +14,7 @@ export class ReviewResolver implements Resolve<Review> {
 }
 
 @Injectable()
-export class ReviewsResolver implements Resolve<Review> {
+export class ReviewsResolver implements Resolve<Review[]> {
 
   constructor(private reviewService: ReviewService) {}
 

@@ -4,7 +4,7 @@
         <h2 *ngIf="mode === ReviewMode.Add">Rate your Stay</h2>
         <h2 *ngIf="mode === ReviewMode.View">Review Detail</h2>
         <h2 *ngIf="mode === ReviewMode.Moderate">Moderate Review</h2>
-        <form name="form" *ngIf="review" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
 
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && (!hotel.valid && mode === ReviewMode.Add) }">
             <label for="hotel">Hotel</label>
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !text.valid }">
                 <label for="1_rating">Rating</label>
-                <app-rating [(rating)]="review.rate" [readonly]="mode !== ReviewMode.Add" ></app-rating>
+                <star-rating [(rating)]="review.rate" [readonly]="mode !== ReviewMode.Add" ></star-rating>
             </div>
             <div *ngIf="mode === ReviewMode.Add" class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>

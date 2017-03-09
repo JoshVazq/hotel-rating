@@ -1,12 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+alert > .alert{
+  width: 75%;
+  position: relative;
+  margin: 0 auto;
+}
 
 app-navbar + #page-content-wrapper {
     padding-left: 50px;
 }
 
+app-navbar ~ alert > .alert{
+  left: 25px;
+}
 
 @media(min-width:768px) {
   app-navbar + #page-content-wrapper{
       padding-left: 150px;
+  }
+  app-navbar ~ alert > .alert{
+      left:75px;
   }
 }

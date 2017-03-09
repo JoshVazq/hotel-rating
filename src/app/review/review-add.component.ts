@@ -16,11 +16,11 @@ export class ReviewAddComponent extends ReviewComponent {
   ngOnInit() {
       super.ngOnInit();
       this.review.user = this.currentUser.id;
-
-
+      this.hotels = JSON.parse(localStorage.getItem('availableHotels'));
   }
   save(){
     this.loading = true;
+    this.review.hotel = +this.review.hotel;
     this.reviewService.create(this.review)
         .subscribe(
             data => {

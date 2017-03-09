@@ -1,28 +1,27 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, InfoComponent, HotelListComponent, HotelComponent, ReviewListComponent, ReviewAddComponent, ReviewViewComponent } from './components';
+import { HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, InfoComponent, EditInfoComponent, ReviewListComponent, ReviewAddComponent, ReviewViewComponent } from './components';
 import { HotelsResolver, ReviewResolver, ReviewsResolver } from './resolvers';
 import { AuthenticationGuard } from './guards';
 
 const appRoutes: Routes = [
+    { path: '', redirectTo: '/profile', pathMatch: 'full'},
     {
         path: '', canActivate: [AuthenticationGuard],
         children: [
-            { path: '', component: HomeComponent },
-            { path: 'info', component: InfoComponent },
-            { path: 'hotel-list', component: HotelListComponent },
-            { path: 'hotel-list/:id', component: HotelComponent },
+            /*{ path: '', component: HomeComponent },*/
+            { path: 'profile', component: InfoComponent },
+            { path: 'profile/edit', component: EditInfoComponent },
             {
                 path: 'reviews', component: ReviewListComponent,
                 resolve: {
-                    reviews: ReviewsResolver
+                    reviews: ReviewsResolver,
+                    hotels: HotelsResolver
                 }
             },
             {
-                path: 'reviews/add', component: ReviewAddComponent,
-                resolve: {
-                    hotels: HotelsResolver
-                }
+                path: 'reviews/add', component: ReviewAddComponent
+
             },
             {
                 path: 'reviews/:id', component: ReviewViewComponent,
@@ -42,7 +41,7 @@ const appRoutes: Routes = [
     },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'profile' }
 ];
 
 export const AppRouting = RouterModule.forRoot(appRoutes);

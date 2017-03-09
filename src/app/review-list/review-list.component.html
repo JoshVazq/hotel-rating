@@ -1,11 +1,19 @@
 
 <ul>
   <li *ngFor="let review of reviews">
-    <a [routerLink]="['/reviews', review.id]">{{review}}</a>
+    <span>{{hotels.get(review.hotel).name}}</span>
+     <star-rating [(rating)]="review.rate" [readonly]="true" ></star-rating>
+     <span>
+       <span [ngClass]="review.moderated ? 'label-info' : 'label-default'"  class="label">
+         {{review.moderated? 'Moderated' : 'Not moderated' }}
+       </span>
+     </span>
+    <a [routerLink]="['/reviews', review.id]"><span class="glyphicon glyphicon-eye-open"></span></a>
   </li>
-
-  <li *ngIf="currentUser.role === UserRole.User "> <a [routerLink]="['add']" >+ Add review</a></li>
 </ul>
-<p *ngIf="currentUser.role === UserRole.Admin && reviews.length == 0">
-  There are not reviews yet.
+<a *ngIf="currentUser.role === UserRole.User && availableHotels.length > 0 " [routerLink]="['add']"  class="add">
+  <span class="glyphicon glyphicon-plus"></span>
+</a>
+<p *ngIf="currentUser.role === UserRole.Admin && reviews.length == 0" class="not-reviews">
+  There are not reviews to moderate.
 </p>

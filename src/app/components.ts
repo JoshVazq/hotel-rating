@@ -1,12 +1,11 @@
 export { AppComponent } from './app.component';
 export { HomeComponent } from './home/home.component';
 export { LoginComponent } from './login/login.component';
-export { RegisterComponent } from './register/register.component';
 export { AlertComponent } from './alert/alert.component';
 export { NavbarComponent } from './navbar/navbar.component';
-export { InfoComponent } from './info/info.component';
-export { HotelListComponent } from './hotel-list/hotel-list.component';
-export { HotelComponent } from './hotel/hotel.component';
+export { RegisterComponent } from './user/register.component';
+export { InfoComponent } from './user/info.component';
+export { EditInfoComponent } from './user/edit-info.component';
 export { ReviewListComponent } from './review-list/review-list.component';
 export { ReviewAddComponent } from './review/review-add.component';
 export { ReviewViewComponent } from './review/review-view.component';

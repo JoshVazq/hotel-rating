@@ -13,7 +13,7 @@ export class ReviewComponent implements OnInit {
 
     loading = false;
     mode: ReviewMode;
-    ReviewMode:any = ReviewMode;
+    ReviewMode: any = ReviewMode;
 
     constructor(
         protected router: Router,
@@ -25,27 +25,7 @@ export class ReviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        /*this.hotelService.getAll().subscribe(
-            data => {
-                this.hotels = data;
-            },
-            error => {
-                this.alertService.error(error);
-            });*/
-
-            this.hotels = this.route.snapshot.data['hotels'];
-
+        this.hotels = this.route.snapshot.data['hotels'];
     }
-    getReview(id: number) {
-        this.reviewService.getById(id).subscribe(
-            data => {
-                this.review = data;
-            },
-            error => {
-                this.alertService.error(error);
-            });
-    }
-
-
 
 }

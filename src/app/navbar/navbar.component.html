@@ -1,0 +1,7 @@
+<nav id="sidebar-wrapper">
+    <ul>
+      <li *ngFor="let item of items">
+        <a [routerLink]="[ '/' + item.url ]" title="{{ item.title }}"><span class="glyphicon glyphicon-{{item.icon}}"></span><span>{{ item.title }}</span></a>
+      </li>
+  </ul>
+</nav>

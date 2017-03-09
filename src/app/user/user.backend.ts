@@ -40,6 +40,7 @@ export function userSubscription(backend) {
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
+                            password: user.password,
                             token: 'fake-jwt-token'
                         }
                     })));
@@ -105,6 +106,11 @@ export function userSubscription(backend) {
                 if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     let updatedUser = JSON.parse(connection.request.getBody());
 
+                    // validation
+                    let duplicateUser = users.filter(user => { return (user.username === updatedUser.username && user.id !== updatedUser.id); }).length;
+                    if (duplicateUser) {
+                        return connection.mockError(new Error('Email "' + updatedUser.username + '" is already taken'));
+                    }
                     // find user by id in users array
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);

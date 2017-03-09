@@ -1,0 +1,55 @@
+ul {
+  margin: 0px;
+  padding: 0px;
+  li {
+    display: table;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dedede;
+    margin: 15px 0;
+    >* {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    >span:first-child {
+      width: 25%;
+
+      @media(max-width:600px) {
+        width: 40%;
+      }
+
+    }
+    >span:nth-child(3) {
+      width: 25%;
+      text-align: center;
+
+      @media(max-width:600px) {
+        width: 50%;
+      }
+
+    }
+    star-rating {
+      float: left;
+      @media(max-width:600px) {
+        display: none;
+      }
+    }
+  }
+}
+.add {
+  font-size: 4em;
+  color: #dedede;
+  margin: 0 auto;
+  display: block;
+  width: 40px;
+  text-decoration: none;
+  @media(max-width:600px) {
+    font-size: 3em;
+  }
+}
+.not-reviews {
+  font-size: 2em;
+  color: #dedede;
+  text-align: center;
+  margin-top: 50px;
+}
