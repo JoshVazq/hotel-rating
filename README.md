@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
 
-##Install
+## Install
 1. Clone this repository
   ```
    git clone https://github.com/JoshVazq/hotel-rating
